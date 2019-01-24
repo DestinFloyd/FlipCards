@@ -5,5 +5,4 @@ const setController = require('../controllers/setController')
 router.get('/', setController.index)
 
 
-
 module.exports = router
