@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+
 class EditSingleStack extends Component {
     state = {
         name: ''
@@ -36,7 +37,7 @@ class EditSingleStack extends Component {
                         />
                     </div>
 
-                    <button>Submit</button>
+                    <button>Submit New Stack Name</button>
                 </form>
             </div>
         );

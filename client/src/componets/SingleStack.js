@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import EditSingleStack from './EditSingleStack';
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 
 class SingleStack extends Component {
     state = {
      stackInfo: {   
         name: '',
-        qas: [{}]
+        stack:[{}]
         }
     }
 
@@ -22,14 +23,23 @@ class SingleStack extends Component {
         })
     }
 
-    // deleteUser = () => {
-    //     const userId = this.props.match.params.userId
-    //     axios.delete(`/api/users/${userId}`)
-    //     .then(() => this.props.history.goBack())
-    // }
+    deleteStack = () => {
+        const setId = this.props.match.params.setId
+        axios.delete(`/api/set/${setId}`)
+        .then(() => this.props.history.goBack())
+    }
     render() {
+        const all = this.state.stackInfo.stack.map((set, i)=>(
+            <div key={i}> 
+           
+            <p>{set.question}</p>
+            <p>{set.answer}</p>
+            </div>
+        ))
         return (
             <div>
+                <Link to={`/`}><h3>Go Back</h3></Link>
+                
                 Im a single stack!
                 <h1>{this.state.stackInfo.name}</h1>
                 
@@ -39,14 +49,11 @@ class SingleStack extends Component {
                 getSingleStack={this.getSingleStack}
                 setId={this.state.stackInfo._id}
                 /> 
-                {/* <div><button onClick={this.deleteUser}>Delete User</button></div> */}
+                    <div><button onClick={this.deleteStack}>Delete this Stack</button></div> 
 
-                {/* {this.state.user.ideas.map((idea, i) => (
-                    <div key={i}>
-                        <h3>{idea.title}</h3>
-                        <p>{idea.description}</p>
-                    </div>
-                ))} */}
+                {all}
+
+            
             </div>
         );
     }
