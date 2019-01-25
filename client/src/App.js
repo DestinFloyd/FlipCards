@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+// import axios from 'axios'
+import StackList from './componets/StackList'
+import SingleStack from './componets/SingleStack';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <p>
-            <strong>  Knocking out project 3</strong>
-          </p>
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
-      </div>
+      <Router>
+        <div>
+          <h1> Flip Cards</h1>
+          <Switch>
+
+            <Route exact path='/' component={StackList} />
+            <Route exact path='/:setId' component={SingleStack} />
+
+
+          </Switch>
+
+        </div>
+      </Router>
     );
   }
 }
