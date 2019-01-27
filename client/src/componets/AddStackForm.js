@@ -9,7 +9,7 @@ state={
 handleChange = (event) => {
     const newStack = { ...this.state.stack }
     newStack[event.target.name] = event.target.value
-    this.setState({ user: newStack })
+    this.setState({ name: newStack })
 }
 
 handleSubmit = (event) => {
@@ -17,8 +17,8 @@ handleSubmit = (event) => {
     const payload = this.state.name
     axios.post('/api/set', payload)
     .then((res) => {
-        // this.props.getAllUsers()
-        // this.props.toggleAddUserForm()
+        this.props.getAllStacks()
+        this.props.toggleAddStackForm()
     })
 }
     render() {
@@ -34,7 +34,7 @@ handleSubmit = (event) => {
                     onChange={this.handleChange}
                     />
                 </div>
-                <button>Submit New Stack</button>
+                <button>Submit</button>
             </form>
         </div>
         );
