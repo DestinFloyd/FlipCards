@@ -4,7 +4,37 @@ import styled from 'styled-components'
 
 const OneCard = styled.div`
 border: 2px solid black;
+max-height: 400px;
+max-width: 400px;
+display: flex;
+justify-content: center;
+align-items: center;
 `
+const Top = styled.div`
+border: solid blue;
+min-height: 400px;
+min-width: 400px; 
+position: relative;
+z-index: 1;
+${OneCard}:hover & {
+    background: pink;
+    opacity: 0;
+}
+`
+const Bottom = styled.div`
+border: solid red;
+height: 399px;
+width: 399px; 
+position: absolute;
+z-index: 2;
+text-align: center;
+opacity: 0;
+${OneCard}:hover & {
+    background: pink;
+    opacity: 1;
+}
+`
+
 class QA extends Component {
     state = {
         stack:[{}],
@@ -20,7 +50,7 @@ class QA extends Component {
     handleChange = (event, qaId) => {
         const updatedState = { ...this.state.qa }
         this.props.stack.forEach((qa) => {
-            if (qaId === qa._id) {
+            if(qaId === qa._id) {
                 updatedState[event.target.name] = event.target.value
             }
         })
@@ -54,9 +84,10 @@ class QA extends Component {
                             <textarea onChange={(event) => this.handleChange(event, qa._id)} type="text" name="question" defaultValue={qa.question}></textarea>
                             <textarea onChange={(event) => this.handleChange(event, qa._id)} type="text" name="answer" defaultValue={qa.answer}></textarea>
                         </form>
-                            : <OneCard> <p>{qa.question}</p> <p>{qa.answer}</p> </OneCard>}
-
-                        <button onClick={(event) => this.deleteQA(event, qa._id)}>X</button>
+                            : <OneCard> <Top>{qa.question}</Top> 
+                            <Bottom>{qa.answer}<button onClick={(event) => this.deleteQA(event, qa._id)}>X</button></Bottom> 
+                            </OneCard>}
+                       
 
                     </div>
                 ))}

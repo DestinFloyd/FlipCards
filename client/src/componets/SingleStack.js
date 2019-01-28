@@ -3,6 +3,7 @@ import EditSingleStack from './EditSingleStack';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import QA from './QA'
+// import styled from 'styled-components'
 
 class SingleStack extends Component {
     state = {
@@ -11,7 +12,7 @@ class SingleStack extends Component {
             stack: [{}]
         },
         showEditForm: false,
- 
+
     }
     componentDidMount() {
         this.getSingleStack()
@@ -34,7 +35,7 @@ class SingleStack extends Component {
         axios.delete(`/api/set/${setId}`)
             .then(() => this.props.history.goBack())
     }
-    createNewQA=()=>{
+    createNewQA = () => {
         const setId = this.props.match.params.setId
         axios.post(`/api/set/${setId}/qa`).then((res) => {
             console.log(res.data)
@@ -60,11 +61,10 @@ class SingleStack extends Component {
                 /> : null}
 
                 <div><button onClick={this.deleteStack}>Delete this Stack</button></div>
- <button onClick={this.createNewQA} >Add Card</button>
-
-                <QA setId={this.props.match.params.setId} stack={this.state.stackInfo.stack} getSingleStack={this.getSingleStack} />
-
-
+                <button onClick={this.createNewQA} >Add Card</button>
+                
+                    <QA setId={this.props.match.params.setId} stack={this.state.stackInfo.stack} getSingleStack={this.getSingleStack} />
+                
             </div>
         );
     }
