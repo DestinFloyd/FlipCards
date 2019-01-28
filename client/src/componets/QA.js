@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import styled from 'styled-components'
 
-
+const OneCard = styled.div`
+border: 2px solid black;
+`
 class QA extends Component {
     state = {
         stack:[{}],
@@ -37,7 +40,7 @@ class QA extends Component {
         const setId = this.props.setId
         axios.delete(`/api/set/${setId}/qa/${qaId}`).then(() => {
             this.props.getSingleStack()
-        })
+        })  
     }
     render() {
 
@@ -51,7 +54,7 @@ class QA extends Component {
                             <textarea onChange={(event) => this.handleChange(event, qa._id)} type="text" name="question" defaultValue={qa.question}></textarea>
                             <textarea onChange={(event) => this.handleChange(event, qa._id)} type="text" name="answer" defaultValue={qa.answer}></textarea>
                         </form>
-                            : <div> <p>{qa.question}</p> <p>{qa.answer}</p> </div>}
+                            : <OneCard> <p>{qa.question}</p> <p>{qa.answer}</p> </OneCard>}
 
                         <button onClick={(event) => this.deleteQA(event, qa._id)}>X</button>
 

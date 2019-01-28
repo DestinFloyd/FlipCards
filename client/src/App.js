@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
 // import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-// import axios from 'axios'
+import styled from 'styled-components'
 import StackList from './componets/StackList'
 import SingleStack from './componets/SingleStack';
 
+const Container = styled.div`
+// background-color:blue;
+
+`
+const Header = styled.div`
+width: 100vw;
+font-size: 3em;
+`
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-          <h1> Flip Cards</h1>
+        <Container>
+          <Header>Flip Cards</Header>
+         
           
           <Switch>
 
@@ -21,7 +30,7 @@ class App extends Component {
 
           </Switch>
 
-        </div>
+        </Container>
       </Router>
     );
   }

@@ -3,6 +3,7 @@ import EditSingleStack from './EditSingleStack';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import QA from './QA'
+
 class SingleStack extends Component {
     state = {
         stackInfo: {
