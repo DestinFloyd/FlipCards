@@ -27,6 +27,7 @@ class EditSingleStack extends Component {
     render() {
         return (
             <div>
+                
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <input type="text"

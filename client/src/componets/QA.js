@@ -95,13 +95,14 @@ class QA extends Component {
 
         return (
             <div>
-            <EditButton onClick={this.toggleEdit}> Edit </EditButton>
+            <EditButton onClick={this.toggleEdit}> {this.state.showEdit ? "Done Editing" : "Edit" }</EditButton>
             <Container>
-                
+            
                 {this.props.stack.map((qa, i) => (
                     <div key={i}>
 
                         {this.state.showEdit ? <form onBlur={(event) => this.handleSubmit(event, qa._id)}>
+                       
                             <textarea onChange={(event) => this.handleChange(event, qa._id)} type="text" name="question" defaultValue={qa.question}></textarea>
                             <textarea onChange={(event) => this.handleChange(event, qa._id)} type="text" name="answer" defaultValue={qa.answer}></textarea>
                         </form>

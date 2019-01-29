@@ -39,7 +39,6 @@ class SingleStack extends Component {
     createNewQA = () => {
         const setId = this.props.match.params.setId
         axios.post(`/api/set/${setId}/qa`).then((res) => {
-            console.log(res.data)
             this.getSingleStack()
         })
     }
@@ -64,9 +63,10 @@ class SingleStack extends Component {
                 <div><button onClick={this.deleteStack}>Delete this Stack</button></div>
                 <button onClick={this.createNewQA} >Add Card</button>
        
-                    <QA setId={this.props.match.params.setId} stack={this.state.stackInfo.stack} getSingleStack={this.getSingleStack} />
+                    <QA toggleShowEditForm={this.toggleShowEditForm} setId={this.props.match.params.setId} stack={this.state.stackInfo.stack} getSingleStack={this.getSingleStack} />
           
             </div>
+           
         );
     }
 }

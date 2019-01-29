@@ -36,15 +36,18 @@ class StackList extends Component {
     state = {
         stacks: [{}],
         addStackForm: false
+
     }
 
     componentDidMount() {
         this.getAllStacks()
     }
-
+    searchIt = () => {
+        console.log(document.getElementById('searchBar').value)
+    }
     getAllStacks = () => {
         axios.get(`/api/set`)
-        .then((res) => this.setState({ stacks: res.data }))
+            .then((res) => this.setState({ stacks: res.data }))
     }
 
     toggleAddStackForm = () => {
@@ -53,18 +56,32 @@ class StackList extends Component {
     render() {
         return (
             <div>
-                
+
                 Im a stack List!
-                <input type="text" name="searchBar"></input>
+                <input type="text" id="searchBar" onChange={this.searchIt}></input>
                 <button onClick={this.toggleAddStackForm}>Submit New Stack</button>
-                {this.state.addStackForm ? <AddStackForm getAllStacks={this.getAllStacks} toggleAddStackForm={this.toggleAddStackForm}/> : null }
+                {this.state.addStackForm ? <AddStackForm getAllStacks={this.getAllStacks} toggleAddStackForm={this.toggleAddStackForm} /> : null}
+
                 <Container>
-                {this.state.stacks.map((set, i) => (
-                   
-                    <OneStack key={i}>
-                    <Name><Link to={`/${set._id}`}><HH>{set.name}</HH></Link></Name>  
-                    </OneStack>
-                ))}
+                    {this.state.stacks.map((set, i) => (
+                        // console.log('test')
+                        // // let name = set.name
+                        // // let search = document.getElementById("searchBar")
+                        // // search.value = "deon"
+
+                        // let search = document.getElementById("searchBar")
+                        
+                        // //    console.log(typeof(search)) 
+                        // //    if(name.includes(`${search}`)){
+                        // //     console.log(`test ${i}`)
+
+                        // //    }
+
+                        <OneStack key={i}>
+                            <Name><Link to={`/${set._id}`}><HH>{set.name}</HH></Link></Name>
+                        </OneStack>
+
+                    ))}
                 </Container>
             </div>
         );
