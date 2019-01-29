@@ -2,37 +2,56 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import styled from 'styled-components'
 
+
+const Container = styled.div`
+display: flex; 
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: space-evenly;
+`
 const OneCard = styled.div`
 border: 2px solid black;
-max-height: 400px;
-max-width: 400px;
+max-height: 300px;
+max-width: 300px;
 display: flex;
 justify-content: center;
 align-items: center;
 `
 const Top = styled.div`
-border: solid blue;
-min-height: 400px;
-min-width: 400px; 
+height: 300px;
+width: 300px; 
 position: relative;
 z-index: 1;
+text-align: center;
+display: flex;
+justify-content: center;
+align-items: center;
 ${OneCard}:hover & {
-    background: pink;
     opacity: 0;
 }
 `
 const Bottom = styled.div`
-border: solid red;
-height: 399px;
-width: 399px; 
+height: 300px;
+width: 300px; 
 position: absolute;
 z-index: 2;
-text-align: center;
 opacity: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
 ${OneCard}:hover & {
-    background: pink;
     opacity: 1;
+    text-align: center;
 }
+`
+const EditButton = styled.button`
+width: 20vw;
+
+`
+const DeleteButton = styled.button`
+justify-self: flex-end;
+align-self: flex-start;
 `
 
 class QA extends Component {
@@ -76,7 +95,9 @@ class QA extends Component {
 
         return (
             <div>
-                <button onClick={this.toggleEdit} > Edit</button>
+            <EditButton onClick={this.toggleEdit}> Edit </EditButton>
+            <Container>
+                
                 {this.props.stack.map((qa, i) => (
                     <div key={i}>
 
@@ -85,12 +106,13 @@ class QA extends Component {
                             <textarea onChange={(event) => this.handleChange(event, qa._id)} type="text" name="answer" defaultValue={qa.answer}></textarea>
                         </form>
                             : <OneCard> <Top>{qa.question}</Top> 
-                            <Bottom>{qa.answer}<button onClick={(event) => this.deleteQA(event, qa._id)}>X</button></Bottom> 
+                            <Bottom>{qa.answer}<DeleteButton onClick={(event) => this.deleteQA(event, qa._id)}>X</DeleteButton></Bottom> 
                             </OneCard>}
                        
 
                     </div>
                 ))}
+            </Container>
             </div>
         );
     }
