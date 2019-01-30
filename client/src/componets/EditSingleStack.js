@@ -19,7 +19,7 @@ class EditSingleStack extends Component {
         event.preventDefault()
         const newNameData = this.state.name
         const setId = this.props.setId
-        axios.put(`/api/set/${setId}`, newNameData)
+        axios.put(`/api/stack/${setId}`, newNameData)
         .then((res) => {
             this.props.getSingleStack()
         })
