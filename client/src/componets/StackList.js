@@ -46,7 +46,7 @@ class StackList extends Component {
         console.log(document.getElementById('searchBar').value)
     }
     getAllStacks = () => {
-        axios.get(`/api/set`)
+        axios.get(`/api/stack`)
             .then((res) => this.setState({ stacks: res.data }))
     }
 

@@ -80,14 +80,14 @@ class QA extends Component {
         event.preventDefault()
         const setId = this.props.setId
         const newQA = this.state.qa
-        axios.put(`/api/set/${setId}/qa/${qaId}`, newQA)
+        axios.put(`/api/stack/${setId}/card/${qaId}`, newQA)
             .then(() => this.props.getSingleStack())
             console.log("blurr")
     }
     deleteQA = (event, qaId) => {
         event.preventDefault()
         const setId = this.props.setId
-        axios.delete(`/api/set/${setId}/qa/${qaId}`).then(() => {
+        axios.delete(`/api/stack/${setId}/card/${qaId}`).then(() => {
             this.props.getSingleStack()
         })  
     }

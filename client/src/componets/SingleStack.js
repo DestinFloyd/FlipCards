@@ -20,7 +20,7 @@ class SingleStack extends Component {
     }
     getSingleStack = () => {
         const setId = this.props.match.params.setId
-        axios.get(`/api/set/${setId}`)
+        axios.get(`/api/stack/${setId}`)
             .then((res) => {
                 this.setState({ stackInfo: res.data })
             })
@@ -33,12 +33,12 @@ class SingleStack extends Component {
     }
     deleteStack = () => {
         const setId = this.props.match.params.setId
-        axios.delete(`/api/set/${setId}`)
+        axios.delete(`/api/stack/${setId}`)
             .then(() => this.props.history.goBack())
     }
     createNewQA = () => {
         const setId = this.props.match.params.setId
-        axios.post(`/api/set/${setId}/qa`).then((res) => {
+        axios.post(`/api/stack/${setId}/card`).then((res) => {
             this.getSingleStack()
         })
     }
