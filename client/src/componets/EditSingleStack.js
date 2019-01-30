@@ -22,6 +22,7 @@ class EditSingleStack extends Component {
         axios.put(`/api/stack/${setId}`, newNameData)
         .then((res) => {
             this.props.getSingleStack()
+            this.props.toggleShowEditForm()
         })
     }
     render() {
@@ -33,12 +34,10 @@ class EditSingleStack extends Component {
                         <input type="text"
                             placeholder="Stack Name"
                             name="name"
-                            // value={this.state.name}
                             onChange={this.handleChange}
                         />
                     </div>
-
-                    <button>Submit New Stack Name</button>
+                    <button >Submit New Stack Name</button>
                 </form>
             </div>
         );

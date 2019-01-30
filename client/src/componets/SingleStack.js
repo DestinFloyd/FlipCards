@@ -47,21 +47,19 @@ class SingleStack extends Component {
             <div>
                 <Link to={`/`}><h3>Go Back</h3></Link>
 
-                Im a single stack!
                 <h1>{this.state.stackInfo.name}</h1>
-
-
                 <div><button onClick={this.toggleShowEditForm}>Edit Stack Name</button></div>
 
                 {this.state.showEditForm ? <EditSingleStack
                     getSingleStack={this.getSingleStack}
                     setId={this.state.stackInfo._id}
+                    toggleShowEditForm={this.toggleShowEditForm}
                 /> : null}
 
                 <div><button onClick={this.deleteStack}>Delete this Stack</button></div>
                 <button onClick={this.createNewQA} >Add Card</button>
        
-                    <Card toggleShowEditForm={this.toggleShowEditForm} setId={this.props.match.params.setId} stack={this.state.stackInfo.stack} getSingleStack={this.getSingleStack} />
+                <Card toggleShowEditForm={this.toggleShowEditForm} setId={this.props.match.params.setId} stack={this.state.stackInfo.stack} getSingleStack={this.getSingleStack} />
           
             </div>
            

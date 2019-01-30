@@ -14,8 +14,8 @@ handleChange = (event) => {
 
 handleSubmit = (event) => {
     event.preventDefault()
-    const payload = this.state.name
-    axios.post('/api/stack', payload)
+    const newName = this.state.name
+    axios.post('/api/stack', newName)
     .then((res) => {
         this.props.getAllStacks()
         this.props.toggleAddStackForm()

@@ -11,8 +11,8 @@ justify-content: space-evenly;
 
 `
 const OneCard = styled.div`
-max-height: 200px;
-max-width: 300px;
+// max-height: 200px;
+// max-width: 300px;
 min-height: 200px;
 min-width: 300px;
 display: flex;
@@ -61,9 +61,9 @@ width: 10vw;
 const WordHolder = styled.button`
 border: 5px solid black;
 border-radius: 15%;
-height: 200px;
-width: 300px;
-font-size: 16px;
+height: ${props => props.height + "px" };
+width: ${props => props.width + "px" };
+font-size: ${props => props.fontNumber + "px" };
 `
 const DeleteButton = styled.button`
 justify-self: flex-start;
@@ -83,7 +83,10 @@ class Card extends Component {
             question: '',
             answer: ''
         },
-        showEdit: false
+        showEdit: false,
+        fontNumber: 16,
+        boxSizeWidth: 300,
+        boxSizeHeight: 200
     }
     toggleEdit = () => {
         this.setState({ showEdit: !this.state.showEdit })
@@ -97,7 +100,35 @@ class Card extends Component {
         })
         this.setState({ qa: updatedState })
     }
+    fontNumberUp=()=>{
+        let changing = this.state.fontNumber
+        changing += 1
+        this.setState({fontNumber: changing})
+    }
+    fontNumberDown=()=>{
+        let changing = this.state.fontNumber
+        changing -= 1
+        this.setState({fontNumber: changing})
+    }
+    boxSizeUp=()=>{
+        console.log("clicked box size up")
+        let changing = this.state.boxSizeHeight
+        let changing2 = this.state.boxSizeWidth
+        changing += 10
+        console.log(changing + " " + changing2)
+        changing2 += 10
+        this.setState({boxSizeHeight: changing, boxSizeWidth: changing2})
 
+    }
+    boxSizeDown=()=>{
+        console.log("clicked box size down")
+        let changing = this.state.boxSizeHeight
+        let changing2 = this.state.boxSizeWidth
+        changing -= 10
+        console.log(changing + " " + changing2)
+        changing2 -= 10
+        this.setState({boxSizeHeight: changing, boxSizeWidth: changing2})
+    }
     handleSubmit = (event, qaId) => {
         event.preventDefault()
         const setId = this.props.setId
@@ -119,9 +150,10 @@ class Card extends Component {
             <div>
             <EditButton onClick={this.toggleEdit}> {this.state.showEdit ? "Done Editing" : "Edit" }</EditButton>
             <br/>
-
+            <button onClick={this.fontNumberUp}> Font + </button><button onClick={this.fontNumberDown}> Font - </button>
+            <button onClick={this.boxSizeUp}> Box + </button><button onClick={this.boxSizeDown}> Box - </button>
             <Container>
-            
+           
                 {this.props.stack.map((qa, i) => (
                     <div key={i}>
 
@@ -130,8 +162,8 @@ class Card extends Component {
                             <textarea onChange={(event) => this.handleChange(event, qa._id)} type="text" name="question" defaultValue={qa.question}></textarea>
                             <textarea onChange={(event) => this.handleChange(event, qa._id)} type="text" name="answer" defaultValue={qa.answer}></textarea>
                         </form>
-                            : <OneCard> <Top><WordHolder>{qa.question}</WordHolder></Top> 
-                            <Bottom><WordHolder>{qa.answer}</WordHolder> <DeleteButton onClick={(event) => this.deleteQA(event, qa._id)}>X</DeleteButton></Bottom> 
+                            : <OneCard> <Top><WordHolder fontNumber={this.state.fontNumber}  height={this.state.boxSizeHeight} width={this.state.boxSizeWidth}>{qa.question}</WordHolder></Top> 
+                            <Bottom><WordHolder fontNumber={this.state.fontNumber}  height={this.state.boxSizeHeight} width={this.state.boxSizeWidth}>{qa.answer}</WordHolder> <DeleteButton onClick={(event) => this.deleteQA(event, qa._id)}>X</DeleteButton></Bottom> 
                             </OneCard>}
                        
 
@@ -144,5 +176,3 @@ class Card extends Component {
 }
 
 export default Card;
-
-
