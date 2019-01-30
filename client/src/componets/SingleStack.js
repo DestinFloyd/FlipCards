@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import EditSingleStack from './EditSingleStack';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import QA from './QA'
-
-
+import Card from './Card'
 
 
 class SingleStack extends Component {
@@ -63,7 +61,7 @@ class SingleStack extends Component {
                 <div><button onClick={this.deleteStack}>Delete this Stack</button></div>
                 <button onClick={this.createNewQA} >Add Card</button>
        
-                    <QA toggleShowEditForm={this.toggleShowEditForm} setId={this.props.match.params.setId} stack={this.state.stackInfo.stack} getSingleStack={this.getSingleStack} />
+                    <Card toggleShowEditForm={this.toggleShowEditForm} setId={this.props.match.params.setId} stack={this.state.stackInfo.stack} getSingleStack={this.getSingleStack} />
           
             </div>
            

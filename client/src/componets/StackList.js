@@ -21,7 +21,6 @@ text-align: center;
 display: flex;
 justify-content: center;
 align-items: center;
-
 `
 const Name = styled.div`
 margin-top: 30%;
@@ -30,7 +29,8 @@ width: 50%;
 height: 35%;
 
 `
-const HH = styled.h3`color: black;`
+const CardName = styled.h3`
+color: black;`
 
 class StackList extends Component {
     state = {
@@ -42,8 +42,22 @@ class StackList extends Component {
     componentDidMount() {
         this.getAllStacks()
     }
-    searchIt = () => {
+    searchIt = (e) => {
         console.log(document.getElementById('searchBar').value)
+        let currentList = this.state.stacks
+        let editableList = []
+        if (e.target.value !== "") {
+            editableList = currentList.filter(stack => {
+                const lc = stack.name.toLowerCase()
+                const filter = e.target.value.toLowerCase()
+                return lc.includes(filter)
+            })
+            this.setState({ stacks: editableList })
+        } else {
+            this.getAllStacks()
+           
+        }
+        this.setState({ stacks: editableList })
     }
     getAllStacks = () => {
         axios.get(`/api/stack`)
@@ -58,7 +72,7 @@ class StackList extends Component {
             <div>
 
                 Im a stack List!
-                <input type="text" id="searchBar" onChange={this.searchIt}></input>
+                <input type="text" id="searchBar" placeholder="Search..." onChange={this.searchIt}></input>
                 <button onClick={this.toggleAddStackForm}>Submit New Stack</button>
                 {this.state.addStackForm ? <AddStackForm getAllStacks={this.getAllStacks} toggleAddStackForm={this.toggleAddStackForm} /> : null}
 
@@ -70,7 +84,7 @@ class StackList extends Component {
                         // // search.value = "deon"
 
                         // let search = document.getElementById("searchBar")
-                        
+
                         // //    console.log(typeof(search)) 
                         // //    if(name.includes(`${search}`)){
                         // //     console.log(`test ${i}`)
@@ -78,7 +92,7 @@ class StackList extends Component {
                         // //    }
 
                         <OneStack key={i}>
-                            <Name><Link to={`/${set._id}`}><HH>{set.name}</HH></Link></Name>
+                            <Name><Link to={`/${set._id}`}><CardName>{set.name}</CardName></Link></Name>
                         </OneStack>
 
                     ))}

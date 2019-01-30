@@ -19,7 +19,7 @@ const quest4 = new Card({
 })
 const quest5 = new Card({
     question: "What was Mario's original name",
-    answer: "Jupman"
+    answer: "Jumpman"
 })
 const quest6 = new Card({
     question: "What was Nintendo's first mobile console",
