@@ -25,7 +25,7 @@ class App extends Component {
           <Switch>
 
             <Route exact path='/' component={StackList} />
-            <Route exact path='/:setId' component={SingleStack} />
+            <Route exact path='/all/:setId' component={SingleStack} />
 
 
           </Switch>
