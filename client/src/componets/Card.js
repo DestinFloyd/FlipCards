@@ -8,11 +8,8 @@ display: flex;
 flex-direction: row;
 flex-wrap: wrap;
 justify-content: space-evenly;
-
 `
 const OneCard = styled.div`
-// max-height: 200px;
-// max-width: 300px;
 min-height: 200px;
 min-width: 300px;
 display: flex;
@@ -20,13 +17,8 @@ justify-content: center;
 align-items: center;
 margin-bottom: 5%;
 margin-right: 5%;
-
 `
 const Top = styled.div`
-// height: 200px;
-// width: 255px; 
-// min-height: 200px;
-// min-width: 255px; 
 position: relative;
 z-index: 1;
 text-align: center;
@@ -39,8 +31,6 @@ ${OneCard}:hover & {
 }
 `
 const Bottom = styled.div`
-// height: 200px;
-// width: 255px; 
 position: absolute;
 z-index: 2;
 opacity: 0;
@@ -55,15 +45,26 @@ ${OneCard}:hover & {
     text-align: center;
 }
 `
-const EditButton = styled.button`
-width: 10vw;
+const RoundButton = styled.button`
+width: 25px;
+height: 25px;
+border-radius: 50%;
+font-weight: bolder;
+font-size: 16px;
+background: ${props => props.color};
+`
+const UpDownHolder = styled.div`
+display: flex; 
+font-size: 16px;
 `
 const WordHolder = styled.button`
 border: 5px solid black;
 border-radius: 15%;
-height: ${props => props.height + "px" };
-width: ${props => props.width + "px" };
-font-size: ${props => props.fontNumber + "px" };
+background: ${props => props.color};
+color: ${props => props.fontColor};
+height: ${props => props.height + "px"};
+width: ${props => props.width + "px"};
+font-size: ${props => props.fontNumber + "px"};
 `
 const DeleteButton = styled.button`
 justify-self: flex-start;
@@ -78,7 +79,7 @@ border-radius: 50%;
 
 class Card extends Component {
     state = {
-        stack:[{}],
+        stack: [{}],
         qa: {
             question: '',
             answer: ''
@@ -86,7 +87,9 @@ class Card extends Component {
         showEdit: false,
         fontNumber: 16,
         boxSizeWidth: 300,
-        boxSizeHeight: 200
+        boxSizeHeight: 200,
+        color: 'white',
+        fontColor: 'black'
     }
     toggleEdit = () => {
         this.setState({ showEdit: !this.state.showEdit })
@@ -95,42 +98,73 @@ class Card extends Component {
 
         const updatedState = { ...this.state.qa }
         this.props.stack.forEach((qa) => {
-            if(qaId === qa._id) {           
-        updatedState[event.target.name] = event.target.value
-                
+            if (qaId === qa._id) {
+                updatedState[event.target.name] = event.target.value
             }
         })
         this.setState({ qa: updatedState })
-
     }
-    fontNumberUp=()=>{
+    colorUpdate = (num) => {
+        let updatedColorInfo = { ...this.state.color }
+        if (num === 1) {
+            updatedColorInfo = 'red'
+        } else if (num === 2) {
+            updatedColorInfo = 'orange'
+        } else if (num === 3) {
+            updatedColorInfo = 'yellow'
+        } else if (num === 4) {
+            updatedColorInfo = 'green'
+        } else if (num === 5) {
+            updatedColorInfo = 'blue'
+        } else if (num === 6) {
+            updatedColorInfo = 'violet'
+        } else if (num === 7) {
+            updatedColorInfo = 'white'
+        }
+        this.setState({ color: updatedColorInfo })
+    }
+    fontColorUpdate = (num) => {
+        let updatedFontColor = { ...this.state.fontColor }
+        if (num === 1) {
+            updatedFontColor = 'red'
+        } else if (num === 2) {
+            updatedFontColor = 'orange'
+        } else if (num === 3) {
+            updatedFontColor = 'yellow'
+        } else if (num === 4) {
+            updatedFontColor = 'green'
+        } else if (num === 5) {
+            updatedFontColor = 'blue'
+        } else if (num === 6) {
+            updatedFontColor = 'violet'
+        } else if (num === 7) {
+            updatedFontColor = 'black'
+        }
+        this.setState({ fontColor: updatedFontColor })
+    }
+    fontNumberUp = () => {
         let changing = this.state.fontNumber
         changing += 1
-        this.setState({fontNumber: changing})
+        this.setState({ fontNumber: changing })
     }
-    fontNumberDown=()=>{
+    fontNumberDown = () => {
         let changing = this.state.fontNumber
         changing -= 1
-        this.setState({fontNumber: changing})
+        this.setState({ fontNumber: changing })
     }
-    boxSizeUp=()=>{
-        console.log("clicked box size up")
+    boxSizeUp = () => {
         let changing = this.state.boxSizeHeight
         let changing2 = this.state.boxSizeWidth
         changing += 10
-        console.log(changing + " " + changing2)
         changing2 += 10
-        this.setState({boxSizeHeight: changing, boxSizeWidth: changing2})
-
+        this.setState({ boxSizeHeight: changing, boxSizeWidth: changing2 })
     }
-    boxSizeDown=()=>{
-        console.log("clicked box size down")
+    boxSizeDown = () => {
         let changing = this.state.boxSizeHeight
         let changing2 = this.state.boxSizeWidth
         changing -= 10
-        console.log(changing + " " + changing2)
         changing2 -= 10
-        this.setState({boxSizeHeight: changing, boxSizeWidth: changing2})
+        this.setState({ boxSizeHeight: changing, boxSizeWidth: changing2 })
     }
     handleSubmit = (event, qaId) => {
         event.preventDefault()
@@ -138,44 +172,67 @@ class Card extends Component {
         const newQA = this.state.qa
         axios.put(`/api/stack/${stackId}/card/${qaId}`, newQA)
             .then(() => this.props.getSingleStack())
-            console.log("blurr")
-
     }
     deleteQA = (event, qaId) => {
         event.preventDefault()
-
         const setId = this.props.setId
         axios.delete(`/api/stack/${setId}/card/${qaId}`).then(() => {
             this.props.getSingleStack()
-        })  
+        })
     }
     render() {
 
         return (
             <div>
-            <EditButton onClick={this.toggleEdit} > {this.state.showEdit ? "Done Editing" : "Edit" }</EditButton>
-            <br/>
-            <button onClick={this.fontNumberUp}> Font + </button><button onClick={this.fontNumberDown}> Font - </button>
-            <button onClick={this.boxSizeUp}> Box + </button><button onClick={this.boxSizeDown}> Box - </button>
-            <Container>
-           
-                {this.props.stack.map((qa, i) => (
-                    <div key={i}>
 
-                        {this.state.showEdit ? <div> <form  onBlur={(event) => this.handleSubmit(event, qa._id)} >
+                <button onClick={this.toggleEdit} > {this.state.showEdit ? "Done Editing" : "Edit"}</button>
+                <br />
+                Color: <RoundButton onClick={(event) => { this.colorUpdate(1) }} color={"red"} ></RoundButton>
+                <RoundButton onClick={(event) => { this.colorUpdate(2) }} color={"orange"} ></RoundButton>
+                <RoundButton onClick={(event) => { this.colorUpdate(3) }} color={"yellow"} ></RoundButton>
+                <RoundButton onClick={(event) => { this.colorUpdate(4) }} color={"green"} ></RoundButton>
+                <RoundButton onClick={(event) => { this.colorUpdate(5) }} color={"blue"} ></RoundButton>
+                <RoundButton onClick={(event) => { this.colorUpdate(6) }} color={"violet"} ></RoundButton>
+                <RoundButton onClick={(event) => { this.colorUpdate(7) }} color={"white"} ></RoundButton>
+                <br />
+                Font: <RoundButton onClick={(event) => { this.fontColorUpdate(1) }} color={"red"} ></RoundButton>
+                <RoundButton onClick={(event) => { this.fontColorUpdate(2) }} color={"orange"} ></RoundButton>
+                <RoundButton onClick={(event) => { this.fontColorUpdate(3) }} color={"yellow"} ></RoundButton>
+                <RoundButton onClick={(event) => { this.fontColorUpdate(4) }} color={"green"} ></RoundButton>
+                <RoundButton onClick={(event) => { this.fontColorUpdate(5) }} color={"blue"} ></RoundButton>
+                <RoundButton onClick={(event) => { this.fontColorUpdate(6) }} color={"violet"} ></RoundButton>
+                <RoundButton onClick={(event) => { this.fontColorUpdate(7) }} color={"black"} ></RoundButton>
 
-                            <textarea onChange={(event) => this.handleChange(event, qa._id)} onFocus={(event) => this.handleChange(event, qa._id)} type="text" id="question" name="question" defaultValue={qa.question}></textarea>
-                            <textarea onChange={(event) => this.handleChange(event, qa._id)} onFocus={(event) => this.handleChange(event, qa._id)} type="text" id="answer" name="answer" defaultValue={qa.answer}></textarea>
-                        </form></div>
+                <UpDownHolder>
+                    <RoundButton onClick={this.fontNumberDown}> - </RoundButton>
+                    <div>Font</div>
+                    <RoundButton onClick={this.fontNumberUp}> + </RoundButton>
+                </UpDownHolder>
+                <UpDownHolder>
+                    <RoundButton onClick={this.boxSizeDown}> - </RoundButton>
+                    <div>Card</div>
+                    <RoundButton onClick={this.boxSizeUp}> + </RoundButton>
+                </UpDownHolder>
 
-                            : <OneCard> <Top><WordHolder fontNumber={this.state.fontNumber}  height={this.state.boxSizeHeight} width={this.state.boxSizeWidth}>{qa.question}</WordHolder></Top> 
-                            <Bottom><WordHolder fontNumber={this.state.fontNumber}  height={this.state.boxSizeHeight} width={this.state.boxSizeWidth}>{qa.answer}</WordHolder> <DeleteButton onClick={(event) => this.deleteQA(event, qa._id)}>X</DeleteButton></Bottom> 
-                            </OneCard>}
-                       
+                <Container>
 
-                    </div>
-                ))}
-            </Container>
+                    {this.props.stack.map((qa, i) => (
+                        <div key={i}>
+
+                            {this.state.showEdit ? <div><form onBlur={(event) => this.handleSubmit(event, qa._id)}>
+
+                                <textarea onChange={(event) => this.handleChange(event, qa._id)} onFocus={(event) => this.handleChange(event, qa._id)} type="text" id="question" name="question" defaultValue={qa.question}></textarea>
+                                <textarea onChange={(event) => this.handleChange(event, qa._id)} onFocus={(event) => this.handleChange(event, qa._id)} type="text" id="answer" name="answer" defaultValue={qa.answer}></textarea>
+                            </form>
+                            </div>
+
+                                : <OneCard> <Top><WordHolder fontNumber={this.state.fontNumber} height={this.state.boxSizeHeight} width={this.state.boxSizeWidth} color={this.state.color} fontColor={this.state.fontColor}>{qa.question}</WordHolder></Top>
+                                    <Bottom><WordHolder fontNumber={this.state.fontNumber} height={this.state.boxSizeHeight} width={this.state.boxSizeWidth} color={this.state.color} fontColor={this.state.fontColor}>{qa.answer}</WordHolder> <DeleteButton onClick={(event) => this.deleteQA(event, qa._id)}>X</DeleteButton></Bottom>
+                                </OneCard>}
+
+                        </div>
+                    ))}
+                </Container>
             </div>
         );
     }
