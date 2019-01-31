@@ -83,12 +83,6 @@ class Card extends Component {
             question: '',
             answer: ''
         },
-        // cardEdited: {
-        //     question: '',
-        //     answer: ''
-        // },
-        // question: '', 
-        // answer: '',
         showEdit: false,
         fontNumber: 16,
         boxSizeWidth: 300,
@@ -98,10 +92,8 @@ class Card extends Component {
         this.setState({ showEdit: !this.state.showEdit })
     }
     handleChange = (event, qaId) => {
-        console.log("entering handle change")
 
         const updatedState = { ...this.state.qa }
-
         this.props.stack.forEach((qa) => {
             if(qaId === qa._id) {           
         updatedState[event.target.name] = event.target.value
@@ -109,8 +101,7 @@ class Card extends Component {
             }
         })
         this.setState({ qa: updatedState })
-        console.log('updatedS' + updatedState)
-    //    this.handleSubmit(qaId)
+
     }
     fontNumberUp=()=>{
         let changing = this.state.fontNumber

@@ -26,15 +26,15 @@ const quest6 = new Card({
     answer: "The GameBoy"
 })
 const quest7 = new Card({
-    question: "Equasion for Area of a Triangle",
+    question: "Equation for Area of a Triangle",
     answer: "A = 1/2bh"
 })
 const quest8 = new Card({
-    question: "Mathmatics Order of Operations",
+    question: "Mathematics Order of Operations",
     answer: "Parenthesis, Exponents, Multiply, Divide, Add, Subtract"
 })
 const quest9 = new Card({
-    question: "Equasion for Circumference of a circle",
+    question: "Equation for Circumference of a circle",
     answer: "C = 2 pi r"
 })
 const quest10 = new Card({
@@ -55,7 +55,7 @@ const set1 = new Stack({
     stack: [quest1, quest2, quest3, quest4, quest5, quest6]
 })
 const set2 = new Stack({
-    name: "Math Equasions",
+    name: "Math Equation",
     stack: [quest7, quest8, quest9]
 })
 const set3 = new Stack({
