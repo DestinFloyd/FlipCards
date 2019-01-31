@@ -3,7 +3,7 @@
 The objective of this project was to build two models in an Express/Mongo Server and Front End via React. One model have Full CRUD and a second model have Add/Delete.
 
 # Flip Cards
-=========================================================================
+
 
 Welcome to Flip Cards, an App that stores your flash cards in Decks! 
 
@@ -25,12 +25,12 @@ mouse over on desktop!
 Change card color, font color, and card size as wanted!
 
 
--Try using us for studying,
--Memorizing acting lines, 
--Learning a new Language,
--'Spice up' your About Me at the start of a next Lecture, 
--Teachers use us to introduce a topic or to make multiplication tables more fun! 
--What do you put on your Flip Cards? 
+*Try using us for studying,*
+*Memorizing acting lines, *
+*Learning a new Language,*
+*'Spice up' your About Me at the start of a next Lecture, *
+*Teachers use us to introduce a topic or to make multiplication tables more fun! *
+*What do you put on your Flip Cards? *
 ###FlipCard ###letUsKnow 
 
 This App was made using: **React MongoDB Express Node**
