@@ -1,8 +1,32 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
-
+const fadeIt = keyframes`
+  0% {
+    transform: rotateX(180deg);
+  }
+  100% {
+    opacity: 0;
+  }
+`
+const showIt = keyframes`
+  0% {
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+`
+const EditButton = styled.button`
+border-radius: 20%;
+background-color: navy;
+color: white;
+font-weight: bold;
+padding: 1%;
+`
 const Container = styled.div`
 display: flex; 
 flex-direction: row;
@@ -27,7 +51,7 @@ justify-content: center;
 align-items: center;
 margin-left: 15px;
 ${OneCard}:hover & {
-    opacity: 0;
+    animation: .5s ${fadeIt} forwards;
 }
 `
 const Bottom = styled.div`
@@ -40,9 +64,9 @@ justify-content: center;
 align-items: center;
 text-align: center;
 margin-left: 15px;
+transform: rotateX('180deg');
 ${OneCard}:hover & {
-    opacity: 1;
-    text-align: center;
+    animation: 1s ${showIt} forwards;
 }
 `
 const RoundButton = styled.button`
@@ -56,6 +80,23 @@ background: ${props => props.color};
 const UpDownHolder = styled.div`
 display: flex; 
 font-size: 16px;
+`
+const StylingHolder = styled.div`
+display: flex; 
+flex-direction: row;
+justify-content: space-evenly;
+background-color: silver;
+padding-bottom: 1%;
+padding-top: 1%;
+
+
+
+
+
+
+
+
+
 `
 const WordHolder = styled.button`
 border: 5px solid black;
@@ -184,9 +225,11 @@ class Card extends Component {
 
         return (
             <div>
-
-                <button onClick={this.toggleEdit} > {this.state.showEdit ? "Done Editing" : "Edit"}</button>
+            <StylingHolder>
+                <EditButton onClick={this.toggleEdit} > {this.state.showEdit ? "Done Editing" : "Edit Text"}</EditButton>
+                
                 <br />
+<div>
                 Color: <RoundButton onClick={(event) => { this.colorUpdate(1) }} color={"red"} ></RoundButton>
                 <RoundButton onClick={(event) => { this.colorUpdate(2) }} color={"orange"} ></RoundButton>
                 <RoundButton onClick={(event) => { this.colorUpdate(3) }} color={"yellow"} ></RoundButton>
@@ -194,7 +237,9 @@ class Card extends Component {
                 <RoundButton onClick={(event) => { this.colorUpdate(5) }} color={"blue"} ></RoundButton>
                 <RoundButton onClick={(event) => { this.colorUpdate(6) }} color={"violet"} ></RoundButton>
                 <RoundButton onClick={(event) => { this.colorUpdate(7) }} color={"white"} ></RoundButton>
+                </div>
                 <br />
+                <div>
                 Font: <RoundButton onClick={(event) => { this.fontColorUpdate(1) }} color={"red"} ></RoundButton>
                 <RoundButton onClick={(event) => { this.fontColorUpdate(2) }} color={"orange"} ></RoundButton>
                 <RoundButton onClick={(event) => { this.fontColorUpdate(3) }} color={"yellow"} ></RoundButton>
@@ -202,6 +247,7 @@ class Card extends Component {
                 <RoundButton onClick={(event) => { this.fontColorUpdate(5) }} color={"blue"} ></RoundButton>
                 <RoundButton onClick={(event) => { this.fontColorUpdate(6) }} color={"violet"} ></RoundButton>
                 <RoundButton onClick={(event) => { this.fontColorUpdate(7) }} color={"black"} ></RoundButton>
+                </div>
 
                 <UpDownHolder>
                     <RoundButton onClick={this.fontNumberDown}> - </RoundButton>
@@ -213,6 +259,7 @@ class Card extends Component {
                     <div>Card</div>
                     <RoundButton onClick={this.boxSizeUp}> + </RoundButton>
                 </UpDownHolder>
+                </StylingHolder>
 
                 <Container>
 

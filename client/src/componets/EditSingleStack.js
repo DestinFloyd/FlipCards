@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import styled from 'styled-components'
 
+const SlightlyRoundedButton = styled.button`
+border-radius: 20%;
+background-color: #155084;
+color: white;
+font-weight: bold;
+padding: 1%;
+`
 class EditSingleStack extends Component {
     state = {
         name: ''
@@ -37,7 +45,7 @@ class EditSingleStack extends Component {
                             onChange={this.handleChange}
                         />
                     </div>
-                    <button >Submit New Stack Name</button>
+                    <SlightlyRoundedButton>Submit New Stack Name</SlightlyRoundedButton>
                 </form>
             </div>
         );

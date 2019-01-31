@@ -3,7 +3,15 @@ import EditSingleStack from './EditSingleStack';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Card from './Card'
+import styled from 'styled-components'
 
+const SlightlyRoundedButton = styled.button`
+border-radius: 20%;
+background-color: navy;
+color: white;
+font-weight: bold;
+padding: 1%;
+`
 
 class SingleStack extends Component {
     state = {
@@ -48,7 +56,7 @@ class SingleStack extends Component {
                 <Link to={`/`}><h3>Go Back</h3></Link>
 
                 <h1>{this.state.stackInfo.name}</h1>
-                <div><button onClick={this.toggleShowEditForm}>Edit Stack Name</button></div>
+                <div><SlightlyRoundedButton onClick={this.toggleShowEditForm}>Edit Stack Name</SlightlyRoundedButton></div>
 
                 {this.state.showEditForm ? <EditSingleStack
                     getSingleStack={this.getSingleStack}
@@ -56,8 +64,8 @@ class SingleStack extends Component {
                     toggleShowEditForm={this.toggleShowEditForm}
                 /> : null}
 
-                <div><button onClick={this.deleteStack}>Delete this Stack</button></div>
-                <button onClick={this.createNewQA} >Add Card</button>
+                <div><SlightlyRoundedButton onClick={this.deleteStack}>Delete this Stack</SlightlyRoundedButton></div>
+                <SlightlyRoundedButton onClick={this.createNewQA} >Add Card</SlightlyRoundedButton>
        
                 <Card toggleShowEditForm={this.toggleShowEditForm} setId={this.props.match.params.setId} stack={this.state.stackInfo.stack} getSingleStack={this.getSingleStack} />
           

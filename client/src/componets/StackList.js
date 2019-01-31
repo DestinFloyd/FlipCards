@@ -5,6 +5,13 @@ import AddStackForm from './AddStackForm';
 import styled from 'styled-components'
 import card from "./images/cards.png"
 
+const SlightlyRoundedButton = styled.button`
+border-radius: 20%;
+background-color: navy;
+color: white;
+font-weight: bold;
+padding: 1%;
+`
 const BoxOfStuff = styled.div`
 display: flex; 
 flex-direction: row; 
@@ -69,8 +76,8 @@ class StackList extends Component {
         return (
             <div>
 
-                <input type="text" id="searchBar" placeholder="Search..." onChange={this.searchIt}></input>
-                <button onClick={this.toggleAddStackForm}>Submit New Stack</button>
+                <input type="text" id="searchBar" placeholder="Search Stacks..." onChange={this.searchIt}></input>
+                <SlightlyRoundedButton onClick={this.toggleAddStackForm}>Submit New Stack</SlightlyRoundedButton>
                 {this.state.addStackForm ? <AddStackForm getAllStacks={this.getAllStacks} toggleAddStackForm={this.toggleAddStackForm} /> : null}
 
                 <BoxOfStuff>
