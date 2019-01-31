@@ -20,8 +20,8 @@ class App extends Component {
       <Router>
         <Container>
           <Header>Flip Cards</Header>
-         
-          
+
+
           <Switch>
 
             <Route exact path='/' component={StackList} />

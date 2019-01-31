@@ -5,7 +5,7 @@ import AddStackForm from './AddStackForm';
 import styled from 'styled-components'
 import card from "./images/cards.png"
 
-const Container = styled.div`
+const BoxOfStuff = styled.div`
 display: flex; 
 flex-direction: row; 
 flex-wrap: wrap;
@@ -73,7 +73,7 @@ class StackList extends Component {
                 <button onClick={this.toggleAddStackForm}>Submit New Stack</button>
                 {this.state.addStackForm ? <AddStackForm getAllStacks={this.getAllStacks} toggleAddStackForm={this.toggleAddStackForm} /> : null}
 
-                <Container>
+                <BoxOfStuff>
                     {this.state.stacks.map((set, i) => (
 
                         <OneStack key={i}>
@@ -81,7 +81,7 @@ class StackList extends Component {
                         </OneStack>
 
                     ))}
-                </Container>
+                </BoxOfStuff>
             </div>
         );
     }
