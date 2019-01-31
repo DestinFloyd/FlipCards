@@ -83,6 +83,12 @@ class Card extends Component {
             question: '',
             answer: ''
         },
+        // cardEdited: {
+        //     question: '',
+        //     answer: ''
+        // },
+        // question: '', 
+        // answer: '',
         showEdit: false,
         fontNumber: 16,
         boxSizeWidth: 300,
@@ -92,13 +98,19 @@ class Card extends Component {
         this.setState({ showEdit: !this.state.showEdit })
     }
     handleChange = (event, qaId) => {
+        console.log("entering handle change")
+
         const updatedState = { ...this.state.qa }
+
         this.props.stack.forEach((qa) => {
-            if(qaId === qa._id) {
-                updatedState[event.target.name] = event.target.value
+            if(qaId === qa._id) {           
+        updatedState[event.target.name] = event.target.value
+                
             }
         })
         this.setState({ qa: updatedState })
+        console.log('updatedS' + updatedState)
+    //    this.handleSubmit(qaId)
     }
     fontNumberUp=()=>{
         let changing = this.state.fontNumber
@@ -131,14 +143,16 @@ class Card extends Component {
     }
     handleSubmit = (event, qaId) => {
         event.preventDefault()
-        const setId = this.props.setId
+        const stackId = this.props.stackId
         const newQA = this.state.qa
-        axios.put(`/api/stack/${setId}/card/${qaId}`, newQA)
+        axios.put(`/api/stack/${stackId}/card/${qaId}`, newQA)
             .then(() => this.props.getSingleStack())
             console.log("blurr")
+
     }
     deleteQA = (event, qaId) => {
         event.preventDefault()
+
         const setId = this.props.setId
         axios.delete(`/api/stack/${setId}/card/${qaId}`).then(() => {
             this.props.getSingleStack()
@@ -148,7 +162,7 @@ class Card extends Component {
 
         return (
             <div>
-            <EditButton onClick={this.toggleEdit}> {this.state.showEdit ? "Done Editing" : "Edit" }</EditButton>
+            <EditButton onClick={this.toggleEdit} > {this.state.showEdit ? "Done Editing" : "Edit" }</EditButton>
             <br/>
             <button onClick={this.fontNumberUp}> Font + </button><button onClick={this.fontNumberDown}> Font - </button>
             <button onClick={this.boxSizeUp}> Box + </button><button onClick={this.boxSizeDown}> Box - </button>
@@ -157,11 +171,12 @@ class Card extends Component {
                 {this.props.stack.map((qa, i) => (
                     <div key={i}>
 
-                        {this.state.showEdit ? <form onBlur={(event) => this.handleSubmit(event, qa._id)}>
-                       
-                            <textarea onChange={(event) => this.handleChange(event, qa._id)} type="text" name="question" defaultValue={qa.question}></textarea>
-                            <textarea onChange={(event) => this.handleChange(event, qa._id)} type="text" name="answer" defaultValue={qa.answer}></textarea>
-                        </form>
+                        {this.state.showEdit ? <div> <form  onBlur={(event) => this.handleSubmit(event, qa._id)} >
+
+                            <textarea onChange={(event) => this.handleChange(event, qa._id)} onFocus={(event) => this.handleChange(event, qa._id)} type="text" id="question" name="question" defaultValue={qa.question}></textarea>
+                            <textarea onChange={(event) => this.handleChange(event, qa._id)} onFocus={(event) => this.handleChange(event, qa._id)} type="text" id="answer" name="answer" defaultValue={qa.answer}></textarea>
+                        </form></div>
+
                             : <OneCard> <Top><WordHolder fontNumber={this.state.fontNumber}  height={this.state.boxSizeHeight} width={this.state.boxSizeWidth}>{qa.question}</WordHolder></Top> 
                             <Bottom><WordHolder fontNumber={this.state.fontNumber}  height={this.state.boxSizeHeight} width={this.state.boxSizeWidth}>{qa.answer}</WordHolder> <DeleteButton onClick={(event) => this.deleteQA(event, qa._id)}>X</DeleteButton></Bottom> 
                             </OneCard>}
