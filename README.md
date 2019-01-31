@@ -5,24 +5,24 @@ The objective of this project was to build two models in an Express/Mongo Server
 # Flip Cards
 
 
-Welcome to Flip Cards, an App that stores your flash cards in Decks! 
+>Welcome to Flip Cards, an App that stores your flash cards in Decks! 
 
-"Well thats pretty common..." consumers say, "What sets you apart?"
+>"Well thats pretty common..." consumers say, "What sets you apart?"
 
-Well, we are easy to fill out and view! 
+>Well, we are easy to fill out and view! 
 
-Easy to Delete or Add as many cards as you want!
+>Easy to Delete or Add as many cards as you want!
 
-Build as many decks as you want!
+>Build as many decks as you want!
 
-Search through your deck names with a search bar.
+>Search through your deck names with a search bar.
 
-One sheet you can tab through to fill out or edit your cards. 
+>One sheet you can tab through to fill out or edit your cards. 
 
-Also to flip our cards to reveal the back with a click on mobile or 
-mouse over on desktop! 
+>Also to flip our cards to reveal the back with a click on mobile or 
+>mouse over on desktop! 
 
-Change card color, font color, and card size as wanted!
+>Change card color, font color, and card size as wanted!
 
 
 *Try using us for studying,*
