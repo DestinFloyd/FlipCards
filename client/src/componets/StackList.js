@@ -77,7 +77,7 @@ class StackList extends Component {
                     {this.state.stacks.map((set, i) => (
 
                         <OneStack key={i}>
-                            <Name><Link to={`/${set._id}`}><CardName>{set.name}</CardName></Link></Name>
+                            <Name><Link to={`/all/${set._id}`}><CardName>{set.name}</CardName></Link></Name>
                         </OneStack>
 
                     ))}
