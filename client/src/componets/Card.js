@@ -51,6 +51,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 margin-left: 15px;
+overflow: hidden;
 ${OneCard}:hover & {
     animation: .5s ${fadeIt} forwards;
 }
@@ -65,6 +66,7 @@ justify-content: center;
 align-items: center;
 text-align: center;
 margin-left: 15px;
+overflow: scroll;
 transform: rotateX('180deg');
 ${OneCard}:hover & {
     animation: 1s ${showIt} forwards;
