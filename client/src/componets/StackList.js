@@ -63,7 +63,7 @@ class StackList extends Component {
     }
     searchIt = (e) => {
         console.log(document.getElementById('searchBar').value)
-        
+
         let currentList = this.state.stacks
         let editableList = []
         if (e.target.value !== "") {
@@ -76,7 +76,7 @@ class StackList extends Component {
         } else {
             this.getAllStacks()
         }
-        
+
     }
     getAllStacks = () => {
         axios.get(`/api/stack`)
@@ -89,18 +89,24 @@ class StackList extends Component {
     render() {
         return (
             <div>
-            <NavTwo>
-                <input type="text" id="searchBar" placeholder="Search Stacks..." onChange={this.searchIt}></input>
-                <AddStackBox>
-                <SlightlyRoundedButton onClick={this.toggleAddStackForm}>Submit New Stack</SlightlyRoundedButton>
-                {this.state.addStackForm ? <AddStackForm getAllStacks={this.getAllStacks} toggleAddStackForm={this.toggleAddStackForm} /> : null}
-                </AddStackBox>
-            </NavTwo>
+                <NavTwo>
+                    <input type="text" id="searchBar" placeholder="Search Stacks..." onChange={this.searchIt}></input>
+                    <AddStackBox>
+                        <SlightlyRoundedButton onClick={this.toggleAddStackForm}>
+                            Submit New Stack</SlightlyRoundedButton>
+                        {this.state.addStackForm ? <AddStackForm getAllStacks={this.getAllStacks}
+                            toggleAddStackForm={this.toggleAddStackForm} /> : null}
+                    </AddStackBox>
+                </NavTwo>
                 <BoxOfStuff>
                     {this.state.stacks.map((set, i) => (
 
                         <OneStack key={i}>
-                            <Name><Link to={`/all/${set._id}`}><CardName>{set.name}</CardName></Link></Name>
+                            <Name>
+                                <Link to={`/all/${set._id}`}>
+                                    <CardName>{set.name}</CardName>
+                                </Link>
+                            </Name>
                         </OneStack>
 
                     ))}

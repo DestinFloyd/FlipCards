@@ -94,10 +94,14 @@ class SingleStack extends Component {
                 </MidNav>
 
                 <ButtonHolder>
-                    <SlightlyRoundedButton onClick={this.createNewCard} >Add Card</SlightlyRoundedButton>
-                    <div><SlightlyRoundedButton onClick={this.deleteStack}><DangerText> Delete this Stack </DangerText></SlightlyRoundedButton></div>
+                    <SlightlyRoundedButton onClick={this.createNewCard}>
+                        Add Card</SlightlyRoundedButton>
+                    <div><SlightlyRoundedButton onClick={this.deleteStack}><DangerText>
+                        Delete this Stack </DangerText></SlightlyRoundedButton></div>
 
-                    <EditName><SlightlyRoundedButton onClick={this.toggleShowEditForm}>Edit Stack Name</SlightlyRoundedButton>
+                    <EditName>
+                        <SlightlyRoundedButton onClick={this.toggleShowEditForm}>
+                            Edit Stack Name</SlightlyRoundedButton>
                         {this.state.showEditForm ? <EditSingleStack
                             getSingleStack={this.getSingleStack}
                             setId={this.state.stackInfo._id}
@@ -106,7 +110,10 @@ class SingleStack extends Component {
                     </EditName>
                 </ButtonHolder>
 
-                <Card toggleShowEditForm={this.toggleShowEditForm} setId={this.props.match.params.setId} stack={this.state.stackInfo.stack} getSingleStack={this.getSingleStack} />
+                <Card toggleShowEditForm={this.toggleShowEditForm}
+                    setId={this.props.match.params.setId}
+                    stack={this.state.stackInfo.stack}
+                    getSingleStack={this.getSingleStack} />
 
             </div>
 
