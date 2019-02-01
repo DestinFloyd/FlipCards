@@ -16,6 +16,20 @@ const BoxOfStuff = styled.div`
 display: flex; 
 flex-direction: row; 
 flex-wrap: wrap;
+@media (max-width: 800px) {
+    display: flex;
+flex-direction: column;
+align-items: center;
+}
+`
+const NavTwo = styled.div`
+display: flex; 
+flex-direction: row; 
+justify-content: space-evenly;
+`
+const AddStackBox = styled.div`
+display: flex; 
+flex-direction: row; 
 `
 const OneStack = styled.div`
 height: 400px; 
@@ -75,11 +89,13 @@ class StackList extends Component {
     render() {
         return (
             <div>
-
+            <NavTwo>
                 <input type="text" id="searchBar" placeholder="Search Stacks..." onChange={this.searchIt}></input>
+                <AddStackBox>
                 <SlightlyRoundedButton onClick={this.toggleAddStackForm}>Submit New Stack</SlightlyRoundedButton>
                 {this.state.addStackForm ? <AddStackForm getAllStacks={this.getAllStacks} toggleAddStackForm={this.toggleAddStackForm} /> : null}
-
+                </AddStackBox>
+            </NavTwo>
                 <BoxOfStuff>
                     {this.state.stacks.map((set, i) => (
 

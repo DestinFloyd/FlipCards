@@ -1,25 +1,46 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import styled from 'styled-components'
+
+const SlightlyRoundedButton = styled.button`
+border-radius: 20%;
+background-color: #155084;
+color: white;
+font-weight: bold;
+padding: 1%;
+`
+
 class AddStackForm extends Component {
 state={
-    name: '',
+    name: "",
     formShowing: ''
 } 
 
 handleChange = (event) => {
     const newStack = { ...this.state.stack }
+    
     newStack[event.target.name] = event.target.value
+    console.log(newStack)
     this.setState({ name: newStack })
 }
 
 handleSubmit = (event) => {
     event.preventDefault()
     const newName = this.state.name
-    axios.post('/api/stack', newName)
-    .then((res) => {
+    if( newName.name === undefined ){
         this.props.getAllStacks()
         this.props.toggleAddStackForm()
-    })
+
+    }else{ 
+        axios.post('/api/stack', newName)
+        .then( 
+            (res) => {
+            this.props.getAllStacks()
+            this.props.toggleAddStackForm()
+        })
+
+    }
+
 }
     render() {
 
@@ -34,7 +55,7 @@ handleSubmit = (event) => {
                     onChange={this.handleChange}
                     />
                 </div>
-                <button>Submit</button>
+                <SlightlyRoundedButton>Submit</SlightlyRoundedButton>
             </form>
         </div>
         );

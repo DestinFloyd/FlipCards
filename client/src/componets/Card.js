@@ -26,6 +26,7 @@ background-color: navy;
 color: white;
 font-weight: bold;
 padding: 1%;
+
 `
 const Container = styled.div`
 display: flex; 
@@ -88,15 +89,10 @@ justify-content: space-evenly;
 background-color: silver;
 padding-bottom: 1%;
 padding-top: 1%;
-
-
-
-
-
-
-
-
-
+@media (max-width: 800px) {
+flex-direction: column;
+align-items: center;
+}
 `
 const WordHolder = styled.button`
 border: 5px solid black;
@@ -225,40 +221,40 @@ class Card extends Component {
 
         return (
             <div>
-            <StylingHolder>
-                <EditButton onClick={this.toggleEdit} > {this.state.showEdit ? "Done Editing" : "Edit Text"}</EditButton>
-                
-                <br />
-<div>
-                Color: <RoundButton onClick={(event) => { this.colorUpdate(1) }} color={"red"} ></RoundButton>
-                <RoundButton onClick={(event) => { this.colorUpdate(2) }} color={"orange"} ></RoundButton>
-                <RoundButton onClick={(event) => { this.colorUpdate(3) }} color={"yellow"} ></RoundButton>
-                <RoundButton onClick={(event) => { this.colorUpdate(4) }} color={"green"} ></RoundButton>
-                <RoundButton onClick={(event) => { this.colorUpdate(5) }} color={"blue"} ></RoundButton>
-                <RoundButton onClick={(event) => { this.colorUpdate(6) }} color={"violet"} ></RoundButton>
-                <RoundButton onClick={(event) => { this.colorUpdate(7) }} color={"white"} ></RoundButton>
-                </div>
-                <br />
-                <div>
-                Font: <RoundButton onClick={(event) => { this.fontColorUpdate(1) }} color={"red"} ></RoundButton>
-                <RoundButton onClick={(event) => { this.fontColorUpdate(2) }} color={"orange"} ></RoundButton>
-                <RoundButton onClick={(event) => { this.fontColorUpdate(3) }} color={"yellow"} ></RoundButton>
-                <RoundButton onClick={(event) => { this.fontColorUpdate(4) }} color={"green"} ></RoundButton>
-                <RoundButton onClick={(event) => { this.fontColorUpdate(5) }} color={"blue"} ></RoundButton>
-                <RoundButton onClick={(event) => { this.fontColorUpdate(6) }} color={"violet"} ></RoundButton>
-                <RoundButton onClick={(event) => { this.fontColorUpdate(7) }} color={"black"} ></RoundButton>
-                </div>
+                <StylingHolder>
+                    <EditButton onClick={this.toggleEdit} > {this.state.showEdit ? "Done Editing" : "Edit Text"}</EditButton>
 
-                <UpDownHolder>
-                    <RoundButton onClick={this.fontNumberDown}> - </RoundButton>
-                    <div>Font</div>
-                    <RoundButton onClick={this.fontNumberUp}> + </RoundButton>
-                </UpDownHolder>
-                <UpDownHolder>
-                    <RoundButton onClick={this.boxSizeDown}> - </RoundButton>
-                    <div>Card</div>
-                    <RoundButton onClick={this.boxSizeUp}> + </RoundButton>
-                </UpDownHolder>
+                    <br />
+                    <div>
+                        Color: <RoundButton onClick={(event) => { this.colorUpdate(1) }} color={"red"} ></RoundButton>
+                        <RoundButton onClick={(event) => { this.colorUpdate(2) }} color={"orange"} ></RoundButton>
+                        <RoundButton onClick={(event) => { this.colorUpdate(3) }} color={"yellow"} ></RoundButton>
+                        <RoundButton onClick={(event) => { this.colorUpdate(4) }} color={"green"} ></RoundButton>
+                        <RoundButton onClick={(event) => { this.colorUpdate(5) }} color={"blue"} ></RoundButton>
+                        <RoundButton onClick={(event) => { this.colorUpdate(6) }} color={"violet"} ></RoundButton>
+                        <RoundButton onClick={(event) => { this.colorUpdate(7) }} color={"white"} ></RoundButton>
+                    </div>
+                    <br />
+                    <div>
+                        Font: <RoundButton onClick={(event) => { this.fontColorUpdate(1) }} color={"red"} ></RoundButton>
+                        <RoundButton onClick={(event) => { this.fontColorUpdate(2) }} color={"orange"} ></RoundButton>
+                        <RoundButton onClick={(event) => { this.fontColorUpdate(3) }} color={"yellow"} ></RoundButton>
+                        <RoundButton onClick={(event) => { this.fontColorUpdate(4) }} color={"green"} ></RoundButton>
+                        <RoundButton onClick={(event) => { this.fontColorUpdate(5) }} color={"blue"} ></RoundButton>
+                        <RoundButton onClick={(event) => { this.fontColorUpdate(6) }} color={"violet"} ></RoundButton>
+                        <RoundButton onClick={(event) => { this.fontColorUpdate(7) }} color={"black"} ></RoundButton>
+                    </div>
+
+                    <UpDownHolder>
+                        <RoundButton onClick={this.fontNumberDown}> - </RoundButton>
+                        <div>Font</div>
+                        <RoundButton onClick={this.fontNumberUp}> + </RoundButton>
+                    </UpDownHolder>
+                    <UpDownHolder>
+                        <RoundButton onClick={this.boxSizeDown}> - </RoundButton>
+                        <div>Card</div>
+                        <RoundButton onClick={this.boxSizeUp}> + </RoundButton>
+                    </UpDownHolder>
                 </StylingHolder>
 
                 <Container>
@@ -268,8 +264,8 @@ class Card extends Component {
 
                             {this.state.showEdit ? <div><form onBlur={(event) => this.handleSubmit(event, qa._id)}>
 
-                                <textarea onChange={(event) => this.handleChange(event, qa._id)} onFocus={(event) => this.handleChange(event, qa._id)} type="text" id="question" name="question" defaultValue={qa.question}></textarea>
-                                <textarea onChange={(event) => this.handleChange(event, qa._id)} onFocus={(event) => this.handleChange(event, qa._id)} type="text" id="answer" name="answer" defaultValue={qa.answer}></textarea>
+                                <textarea onChange={(event) => this.handleChange(event, qa._id)} onFocus={(event) => this.handleChange(event, qa._id)} type="text" id="question" name="question" placeholder="Top" defaultValue={qa.question}></textarea>
+                                <textarea onChange={(event) => this.handleChange(event, qa._id)} onFocus={(event) => this.handleChange(event, qa._id)} type="text" id="answer" name="answer" placeholder="Bottom" defaultValue={qa.answer}></textarea>
                             </form>
                             </div>
 
