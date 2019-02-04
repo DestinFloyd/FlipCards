@@ -34,8 +34,7 @@ The objective of this project was to build two models in an Express/Mongo Server
 
 
 * What do you put on your Flip Cards? 
-
-##FlipCard ##letUsKnow 
+#FlipCard #letUsKnow 
 
 This App was made using: **React MongoDB Express Node**
 
