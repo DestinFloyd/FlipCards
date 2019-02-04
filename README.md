@@ -25,13 +25,16 @@ The objective of this project was to build two models in an Express/Mongo Server
 * Change card color, font color, and card size as wanted!
 
 
-*Try using us for studying,*
-*Memorizing acting lines, *
-*Learning a new Language,*
-*'Spice up' your About Me at the start of a next Lecture, *
-*Teachers use us to introduce a topic or to make multiplication tables more fun! *
-*What do you put on your Flip Cards? *
-###FlipCard ###letUsKnow 
+* Try using us for studying,
+* Memorizing acting lines, 
+* Learning a new Language,
+* 'Spice up' your About Me at the start of a next Lecture, 
+* Teachers use us to introduce a topic or to make multiplication tables more fun! 
+
+
+* What do you put on your Flip Cards? 
+
+##FlipCard ##letUsKnow 
 
 This App was made using: **React MongoDB Express Node**
 
