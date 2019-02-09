@@ -43,6 +43,12 @@ Heroku: https://gentle-beyond-96466.herokuapp.com/
 GitHub: https://github.com/DestinFloyd/Project3
 Trello: https://trello.com/b/IjbWsarW/project-3
 
+![open](wireFrames/opening.png)
+![default cards view](wireFrames/default.png)
+![customize](wireFrames/changeFontorCardColors.png)
+
+
+
 
 ![wireframe](wireFrames/WireFrameofPro3.jpg)
 ![erd](wireFrames/ERD:DataPlanning.jpg)
