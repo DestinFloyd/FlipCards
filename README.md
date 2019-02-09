@@ -58,6 +58,7 @@ Trello: https://trello.com/b/IjbWsarW/project-3
 
 
 
+# Wireframe / ERD 
 
 ![wireframe](wireFrames/WireFrameofPro3.jpg)
 ![erd](wireFrames/ERD:DataPlanning.jpg)
