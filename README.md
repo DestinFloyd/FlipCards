@@ -43,8 +43,17 @@ Heroku: https://gentle-beyond-96466.herokuapp.com/
 GitHub: https://github.com/DestinFloyd/Project3
 Trello: https://trello.com/b/IjbWsarW/project-3
 
+
+# Opening 
+
 ![open](wireFrames/opening.png)
+
+# Default view - hover card to flip it... 
+
 ![default cards view](wireFrames/default.png)
+
+# Customize Card and Font color and size 
+
 ![customize](wireFrames/changeFontorCardColors.png)
 
 
